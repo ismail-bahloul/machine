@@ -31,3 +31,26 @@ kwriteconfig6 --file kwinrc --group Plugins --key kwin4_effect_geometry_changeEn
 Puis `qdbus6 org.kde.KWin /KWin reconfigure` (ou déconnexion/reconnexion).
 
 Ne lance ces commandes que si `kwriteconfig6` existe (Plasma installé).
+
+## Terminal par défaut
+
+Plasma n'écrit pas `TerminalApplication` par défaut. Sans cette clé, un
+`.desktop` avec `Terminal=true` tombe sur `konsole`, qui n'est pas installé ici
+(le terminal quotidien est kitty) : le lanceur échoue avec « Terminal konsole
+not found ».
+
+```bash
+kwriteconfig6 --file kdeglobals --group General --key TerminalApplication kitty
+kwriteconfig6 --file kdeglobals --group General --key TerminalService kitty.desktop
+kbuildsycoca6
+```
+
+Vérification :
+
+```bash
+kreadconfig6 --file kdeglobals --group General --key TerminalApplication
+kreadconfig6 --file kdeglobals --group General --key TerminalService
+```
+
+`kitty.desktop` est fourni par le paquet `kitty` dans
+`/usr/share/applications/`.
