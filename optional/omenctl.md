@@ -5,7 +5,7 @@ Outil séparé (ventilateurs EC + profils de puissance). Le repo est **public**
 fresh install hors ligne.
 
 - repo : `https://github.com/ismail-bahloul/omenctl.git`
-- dernière ref publiée : `v0.5.0` (pas de release GitHub, seulement un tag)
+- dernière release : `v0.5.1` (`gh release view v0.5.1`)
 
 ## Installer
 
