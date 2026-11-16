@@ -1,11 +1,11 @@
 # omenctl
 
-Outil séparé (ventilateurs EC + profils de puissance). D'après la doc il est
-**privé** ; garde un clone local ou une archive, sinon une fresh install ne
-pourra pas l'installer.
+Outil séparé (ventilateurs EC + profils de puissance). Le repo est **public**
+(`gh repo view ismail-bahloul/omenctl`) ; un clone local reste utile pour une
+fresh install hors ligne.
 
 - repo : `https://github.com/ismail-bahloul/omenctl.git`
-- ref utilisée par l'ancien script : `v0.5.0`
+- dernière ref publiée : `v0.5.0` (pas de release GitHub, seulement un tag)
 
 ## Installer
 
