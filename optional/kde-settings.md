@@ -54,3 +54,33 @@ kreadconfig6 --file kdeglobals --group General --key TerminalService
 
 `kitty.desktop` est fourni par le paquet `kitty` dans
 `/usr/share/applications/`.
+
+## better-blur-dx après une mise à jour de KWin
+
+Le plugin est un module natif compilé pour la version **exacte** de KWin. Après
+une mise à jour de Plasma, KWin le refuse dans le journal :
+
+```
+Effect "better_blur_dx" was built for a different version of KWin and needs
+rebuild, expected "org.kde.kwin.EffectPluginFactory6.8.3"
+got "org.kde.kwin.EffectPluginFactory6.8.0"
+```
+
+Il n'est alors ni chargé ni actif, même avec `[Plugins]
+better_blur_dxEnabled=true` dans `kwinrc`. Rebuild puis recharge :
+
+```bash
+paru -S --rebuild kwin-effects-better-blur-dx
+qdbus6 org.kde.KWin /KWin reconfigure
+qdbus6 org.kde.KWin /Effects org.kde.kwin.Effects.loadEffect better_blur_dx
+```
+
+Vérification :
+
+```bash
+qdbus6 org.kde.KWin /Effects org.kde.kwin.Effects.isEffectLoaded better_blur_dx
+qdbus6 org.kde.KWin /Effects org.kde.kwin.Effects.activeEffects
+```
+
+Le paquet recommande un logout/login ; ici `loadEffect` a suffi, mais le
+logout est le chemin sûr si l'effet ne s'affiche pas.
